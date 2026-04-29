@@ -1,17 +1,27 @@
-export function RecipeCard({ recipe, onRemove }) {
+export function RecipeCard({ recipe, onRemove, onToggleLike }) {
   const { title, category, ingredients, steps, liked } = recipe
 
   return (
     <article className="recipe-card">
       <div className="recipe-card__header">
         <span className="recipe-card__category">{category}</span>
-        <button
-          className="recipe-card__delete"
-          onClick={() => onRemove(recipe.id)}
-          aria-label={`Delete ${title}`}
-        >
-          🗑
-        </button>
+        <div className="recipe-card__actions">
+          <button
+            className={`recipe-card__like ${liked ? 'recipe-card__like--active' : ''}`}
+            onClick={() => onToggleLike(recipe.id)}
+            aria-label={liked ? `Unlike ${title}` : `Like ${title}`}
+            aria-pressed={liked}
+          >
+            {liked ? '♥' : '♡'}
+          </button>
+          <button
+            className="recipe-card__delete"
+            onClick={() => onRemove(recipe.id)}
+            aria-label={`Delete ${title}`}
+          >
+            🗑
+          </button>
+        </div>
       </div>
 
       <h2 className="recipe-card__title">{title}</h2>
@@ -19,7 +29,6 @@ export function RecipeCard({ recipe, onRemove }) {
       <div className="recipe-card__meta">
         <span>{ingredients.length} ingredients</span>
         <span>{steps.length} steps</span>
-        {liked && <span className="recipe-card__liked">♥ Liked</span>}
       </div>
 
       <details className="recipe-card__details">
