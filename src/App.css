@@ -24,6 +24,12 @@
   gap: 10px;
 }
 
+.app-header__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .app-logo {
   font-size: 28px;
 }
@@ -69,6 +75,11 @@
   border: 1px solid var(--color-border);
 }
 .btn--ghost:hover { background: var(--color-border); }
+
+.btn--icon {
+  padding: 8px 10px;
+  font-size: 18px;
+}
 
 /* ── Recipe list ─────────────────────────────────────────────── */
 .recipe-list {
@@ -375,9 +386,38 @@
 .recipe-card__like:hover { transform: scale(1.2); }
 .recipe-card__like--active { color: var(--color-heart); }
 
+/* ── Recipe count ────────────────────────────────────────────── */
+.app-count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.app-footer {
+  text-align: center;
+  padding: 20px 32px;
+  border-top: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ── Card fade-in animation ──────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.recipe-list li {
+  animation: fadeUp 0.2s ease both;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .app-header { padding: 12px 16px; }
+  .app-header h1 { font-size: 18px; }
   .app-main { padding: 20px 16px; }
   .recipe-list { grid-template-columns: 1fr; }
+  .category-tabs { gap: 4px; }
+  .category-tabs__tab { padding: 5px 12px; font-size: 12px; }
 }
