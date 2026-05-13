@@ -1,0 +1,65 @@
+/* ── Design tokens ───────────────────────────────────────────── */
+:root {
+  --color-bg: #fffdf8;
+  --color-surface: #ffffff;
+  --color-border: #e8e4dc;
+  --color-text: #3d3530;
+  --color-text-muted: #7a6f68;
+  --color-primary: #d97706;
+  --color-primary-hover: #b45309;
+  --color-danger: #dc2626;
+  --color-heart: #ef4444;
+  --color-shadow: rgba(0, 0, 0, 0.07);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --font-sans: 'Segoe UI', system-ui, sans-serif;
+
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+/* ── Dark mode tokens ────────────────────────────────────────── */
+[data-theme='dark'] {
+  --color-bg: #1a1612;
+  --color-surface: #26211c;
+  --color-border: #3a3028;
+  --color-text: #f0ebe4;
+  --color-text-muted: #a89e95;
+  --color-primary: #f59e0b;
+  --color-primary-hover: #d97706;
+  --color-shadow: rgba(0, 0, 0, 0.35);
+}
+
+/* ── Reset ───────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.2s, color 0.2s;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul {
+  list-style: none;
+}
