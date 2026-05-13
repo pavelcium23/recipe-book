@@ -5,10 +5,12 @@ import { RecipeList } from './components/RecipeList'
 import { AddRecipeModal } from './components/AddRecipeModal'
 import { SearchBar } from './components/SearchBar'
 import { CategoryTabs } from './components/CategoryTabs'
+import { TokenPanel } from './components/TokenPanel'
 import './App.css'
 
 function App() {
-  const { recipes, addRecipe, removeRecipe, toggleLike } = useRecipes()
+  const [token, setToken] = useState(null)
+  const { recipes, addRecipe, removeRecipe, toggleLike, loading, apiError } = useRecipes(token)
   const { theme, toggleTheme } = useTheme()
   const [showModal, setShowModal] = useState(false)
   const [search, setSearch] = useState('')
@@ -42,6 +44,7 @@ function App() {
           <h1>Recipe Book</h1>
         </div>
         <div className="app-header__right">
+          <TokenPanel onToken={setToken} />
           <button
             className="btn btn--ghost btn--icon"
             onClick={toggleTheme}
@@ -56,6 +59,13 @@ function App() {
       </header>
 
       <main className="app-main">
+        {apiError && (
+          <div className="app-api-error" role="alert">
+            ⚠ API error: {apiError}
+          </div>
+        )}
+        {loading && <div className="app-loading">Loading from API…</div>}
+
         <div className="app-toolbar">
           <SearchBar value={search} onChange={setSearch} />
         </div>
@@ -64,6 +74,7 @@ function App() {
           {filtered.length} {filtered.length === 1 ? 'recipe' : 'recipes'}
           {activeCategory !== 'All' ? ` in ${activeCategory}` : ''}
           {search ? ` matching "${search}"` : ''}
+          {token ? ' · API mode' : ' · offline mode'}
         </p>
         <RecipeList recipes={filtered} onRemove={removeRecipe} onToggleLike={toggleLike} />
       </main>
